@@ -1,0 +1,338 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>firebase MCC</title>
+</head>
+<body>
+<!-- navbar -->
+<ul id="dropdown1" class="dropdown-content"> <!-- only show when user is logged in -->
+    <li><a href="#user-profile" class="modal-trigger">Profile</a></li>
+    <li class="divider"></li>
+    <li><a href="#" id="userLogOut">Log Out</a></li>
+</ul>
+<nav>
+    <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="user-logged d-none"><a href="index.html">Home</a></li>
+            <li class="logged-in d-none"><a class="dropdown-trigger" href="#!" data-target="dropdown1"><span>Hello, User</span><i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- parallax static content -->
+<div class="content logged-in d-none">
+    <div class="parallax-container">
+        <div class="parallax">
+            <img src="images/fly.jpg">
+        </div>
+    </div>
+    <div class="section white container">
+        <div class="row">
+            <h2 class="header">Microsoft Campus Club</h2>
+            <h5>How to Auth (firebase-Auth) - A "learn by doing" webinar by Amit Gupta</h5>
+            <h6>Topics Covered: </h6>
+            <ul>
+                <li>firebase auth</li>
+                <li>Necessary web & js concepts walk through</li>
+                <li>Complete user authentication system</li>
+                <li>login by email and social media platforms - (google)</li>
+                <li>Necessary Auth elements like:
+                </li>
+                    <ol>
+                        <li>login, register, & logout</li>
+                        <li>user profile management</li>
+                        <li>Dom manipulation on user's auth state</li>
+                        <li>user profile management (view, update)</li>
+                        <li>Password reset, Email verification, Account deactivate</li>
+                    </ol>
+                <li>firebase hosting</li>
+            </ul>
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax">
+            <img src="images/boat.jpg">
+        </div>
+    </div>
+</div>
+
+
+<!-- toggle register and login forms -->
+<div class="container logged-out d-none">
+    <div class="row mt2">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"></li>
+                <li class="tab col s3"><a class="active" href="#log-in">Login</a></li>
+                <li class="tab col s3"><a href="#sign-up">Register</a></li>
+                <li class="tab col s3"></li>
+            </ul>
+        </div>
+    </div>
+    <!-- login  -->
+    <div id="log-in" class="col s12">
+        <div class="container p5">
+            <h4 class="center-align pb2">Good to see you back!</h4>
+            <div class="row">
+                <form class="col s12" id="login-form">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <button class="btn waves-effect waves-light" id="google-signIn">google login</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="loginEmail" type="email" class="validate" required>
+                            <label for="loginEmail">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="loginPassword" type="password" class="validate" required>
+                            <label for="loginPassword">Password</label>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">login</button>
+                        <button class="btn waves-effect red accent-1 modal-trigger" data-target="forgot-password" type="submit" name="action">forgot password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- register  -->
+    <div id="sign-up" class="col s12">
+        <div class="container p5">
+            <h4 class="center-align pb2">Register Form</h4>
+            <div class="row">
+                <form class="col s12" id="register-form">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <button class="btn waves-effect waves-light" id="google-signIn">google login</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="userEmail" type="email" class="validate" required>
+                            <label for="userEmail">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="userPassword" type="password" class="validate" required>
+                            <label for="userPassword">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="cnfUserPassword" type="password" class="validate" required>
+                            <label for="cnfUserPassword">Confirm Password</label>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- forgot password modal -->
+<div id="forgot-password" class="modal">
+    <div class="modal-content">
+        <div class="container p5">
+            <h4 class="center-align pb2">Enter your e-mail to proceed</h4>
+            <div class="row">
+                <form class="col s12" id="forgotPasswordForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="userAccEmail" type="email" class="validate" required>
+                            <label for="userAccEmail">Email</label>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">proceed</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+    </div>
+</div>
+
+
+<!-- user profile modal --> <!-- only show once user is logged in -->
+<div id="user-profile" class="modal">
+    <div class="modal-content">
+        <div class="container p5">
+            <h4 class="center-align pb2">Hello User</h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row user-data">
+                        <h6>Name: </h6>
+                        <span id="displayUserName">Updated name will be shown here</span><br>
+                        <h6>Email: </h6>
+                        <span id="displayUserEmail">display email address here</span><br>
+                        <span id="isEmailVerified">mail is not verified</span>
+                    </div>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light modal-trigger" data-target="update-user-data" type="submit" name="action">Update Name</button>
+                        <button class="btn waves-effect waves-light modal-trigger" data-target="update-user-email" type="submit" name="action">update email</button>
+                        <button class="btn waves-effect waves-light modal-trigger" data-target="update-password" type="submit" name="action">update password</button>
+                        <button class="btn waves-effect waves-light modal-trigger" data-target="delete-account-cnf" type="submit" name="action">delete account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+    </div>
+</div>
+
+
+<!-- update user data modal -->
+<div id="update-user-data" class="modal">
+    <div class="modal-content">
+        <div class="container p5">
+            <h4 class="center-align pb2">Your data is safe with us!</h4>
+            <div class="row">
+                <form class="col s12" id="userDataForm">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="First Name" id="first_name" type="text" class="validate" required>
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" type="text" class="validate" required>
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">update now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+    </div>
+</div>
+
+
+<!-- update user email modal -->
+<div id="update-user-email" class="modal">
+    <div class="modal-content">
+        <div class="container p5">
+            <h4 class="center-align pb2">Your data is safe with us!</h4>
+            <div class="row">
+                <form class="col s12" id="updateEmailForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="new-email" type="email" class="validate" required>
+                            <label for="new-email">Email</label>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">update now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+    </div>
+</div>
+
+
+<!-- update user password modal -->
+<div id="update-password" class="modal">
+    <div class="modal-content">
+        <div class="container p5">
+            <h4 class="center-align pb2">Enter your new password</h4>
+            <div class="row">
+                <form class="col s12" id="resetPasswordForm">
+                    <div class="row">
+                        <div class="input-field col s12 newP">
+                            <input id="newPassword" type="password" class="validate" required>
+                            <i class="material-icons" id="togglePassIcon" onclick="togglePass()">visibility</i>
+                            <label for="newPassword">Password</label>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">update password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+    </div>
+</div>
+
+
+<!-- delete account confirmation modal -->
+<div id="delete-account-cnf" class="modal">
+    <div class="modal-content">
+        <div class="container p5">
+            <h4 class="center-align pb2">please confirm to delete your account</h4>
+            <div class="row">
+                <form class="col s12" id="deleteUserAcc">
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">proceed</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+    </div>
+</div>
+
+
+<!-- footer -->
+<div class="foot center-align">
+    <p>This is a demo site designed by MCC SIT</p>
+</div>
+
+
+<!-- materialize js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $(".dropdown-trigger").dropdown();
+    });
+    $(document).ready(function(){
+        $('.modal').modal();
+    });
+    $(document).ready(function(){
+        $('.parallax').parallax();
+    });
+    $(document).ready(function(){
+        $('.tabs').tabs();
+    });
+</script>
+
+
+<script src="auth.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>

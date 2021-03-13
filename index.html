@@ -18,16 +18,16 @@
 </ul>
 <nav>
     <div class="nav-wrapper container">
-        <a href="#" class="brand-logo">Logo</a>
+        <a href="#" class="brand-logo"><img src="images/mcc.jpeg" style="height: 60px; padding: 10px;" alt="logo not found"></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="user-logged d-none"><a href="index.html">Home</a></li>
-            <li class="logged-in d-none"><a class="dropdown-trigger" href="#!" data-target="dropdown1"><span>Hello, User</span><i class="material-icons right">arrow_drop_down</i></a></li>
+            <li class="user-logged"><a href="index.html">Home</a></li>
+            <li class="logged-in"><a class="dropdown-trigger" href="#!" data-target="dropdown1"><span>Hello, User</span><i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
     </div>
 </nav>
 
 <!-- parallax static content -->
-<div class="content logged-in d-none">
+<div class="content logged-in">
     <div class="parallax-container">
         <div class="parallax">
             <img src="images/fly.jpg">
@@ -65,7 +65,7 @@
 
 
 <!-- toggle register and login forms -->
-<div class="container logged-out d-none">
+<div class="container logged-out">
     <div class="row mt2">
         <div class="col s12">
             <ul class="tabs">
@@ -113,11 +113,6 @@
             <h4 class="center-align pb2">Register Form</h4>
             <div class="row">
                 <form class="col s12" id="register-form">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <button class="btn waves-effect waves-light" id="google-signIn">google login</button>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="userEmail" type="email" class="validate" required>

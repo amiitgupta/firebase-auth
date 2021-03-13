@@ -1,1 +1,1 @@
-// start auth js here
+// firebase auth codes goes here

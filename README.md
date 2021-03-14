@@ -14,6 +14,6 @@ Given below are the tasks to perform by you in order to qualify for the incentiv
 6. Send email verification mail when a user updates their email id.
 7. And also if any improvements you feel we can make, try to do that too (do atleast one).
 
-You have to make submission either by making a pull request to this github repository or send your files directly to my email addredd: (amitscgupta@gmail.com)
+You have to make submission either by making a pull request to this github repository or send your files directly to my email address: (amitscgupta@gmail.com)
 
 Happy firebasing.
